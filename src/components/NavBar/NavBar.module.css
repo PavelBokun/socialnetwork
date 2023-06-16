@@ -1,0 +1,27 @@
+.nav{
+    display: flex;
+    grid-area: n;
+    background-color: rgb(24, 80, 24);
+    padding: 20px;
+    
+  }
+  .item a {
+   color:rgb(240, 236, 212);
+   text-decoration: none;
+  }
+   .item a.active{
+    color:rgb(204, 174, 22);
+    padding: 2px;
+    border-radius: 5px;
+    border: solid 1px gold;
+    background-color: darkgreen;
+   
+  }
+  /* .NavBar_nav__5mdyZ{
+    display: flex;
+    grid-area: n;
+    background-color: yellowgreen;
+  }
+  .NavBar_item__rgHX0{
+   color:rgb(200, 34, 34) 
+  } */

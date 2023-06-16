@@ -1,0 +1,11 @@
+.con {
+  grid-area: c;
+  background-color: rgb(73, 70, 115);
+}
+.avatar {
+  padding: 10px;
+}
+.img {
+  width: "800px";
+  height: "500px";
+}

@@ -1,0 +1,8 @@
+.item{
+    color:rgb(59, 204, 59);
+  }
+  .item img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
