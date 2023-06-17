@@ -7,14 +7,14 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { StateType } from "./Redux/state";
-// const Component = () => <Dialogs id={0} name={""} message={""} />;
-// let SomeComponent=()=><Dialogs id={0} name={""} message={""} />
+import addPost from "./Redux/state"
 
 
 
 
 type PropsType={
 state:StateType
+addPost:(postText:string)=>void
 }
 // type messagesType={
 // newmessages:
@@ -51,7 +51,7 @@ const App = (props:PropsType) => {
           />
           <Route exact
            path="/profile" 
-           render={() => <ProFile data={props.state.profilePages.postsData} />} 
+           render={() => <ProFile data={props.state.profilePages.postsData} addPost={addPost} />} 
            />
         </Switch>
       </div>

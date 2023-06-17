@@ -5,14 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import state from "./Redux/state";
+import {addPost} from "./Redux/state";
 
 
+
+// addPost()
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <App state={state} />
+    <App state={state}  addPost={addPost}/>
   </BrowserRouter>
 );
 
