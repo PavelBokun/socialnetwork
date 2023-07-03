@@ -14,7 +14,7 @@ import addPost from "./Redux/state"
 
 type PropsType={
 state:StateType
-addPost:(postText:string)=>void
+ addPost:(postText:string)=>void
 }
 // type messagesType={
 // newmessages:
@@ -51,7 +51,7 @@ const App = (props:PropsType) => {
           />
           <Route exact
            path="/profile" 
-           render={() => <ProFile data={props.state.profilePages.postsData} addPost={addPost} />} 
+           render={() => <ProFile data={props.state.profilePages.postsData} addPost={props.addPost} />} 
            />
         </Switch>
       </div>
@@ -59,3 +59,4 @@ const App = (props:PropsType) => {
   );
 };
 export default App;
+// 

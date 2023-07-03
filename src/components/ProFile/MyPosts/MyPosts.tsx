@@ -6,6 +6,7 @@ import { PostType } from "../../../Redux/state";
 
 type MyPostPropsType = {
   postData: PostType[];
+  addPost:(postText:string)=>void
 };
 
 const MyPosts = (props: MyPostPropsType) => {
@@ -15,12 +16,14 @@ const MyPosts = (props: MyPostPropsType) => {
   ));
   const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-  const addPost = () => {
-    const text = newPostElement.current?.value;
-
-  //   if (text != null) {
-  //     console.log(alert(text));
-  //   }
+  const addPostHandler = () => {
+       let text = newPostElement.current?.value;
+      
+    if (text != null) {
+      props.addPost(text)
+      
+    }
+    text=''
   };
   return (
     <div className={s.postsblock}>
@@ -31,7 +34,7 @@ const MyPosts = (props: MyPostPropsType) => {
         <textarea ref={newPostElement}></textarea>
       </div>
       <div>
-        <button onClick={addPost}>Add post</button>
+        <button onClick={addPostHandler}>Add post</button>
         {/* <button onClick={addPost}>Add post</button> */}
 
       </div>

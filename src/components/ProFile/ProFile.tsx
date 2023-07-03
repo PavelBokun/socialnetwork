@@ -5,17 +5,16 @@ import "./ProFile.module.css";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 import { PostType } from "../../Redux/state";
 
+export type ProFileType = {
+  data: PostType[];
+addPost:(postText:string)=>void
 
- export type ProFileType = {
-  data: PostType[]
-}
-const ProFile = (props:ProFileType) => {
-
-
-    return (
+};
+const ProFile = (props: ProFileType) => {
+  return (
     <>
-      <ProfileInfo  />
-      <MyPosts postData={props.data}/>
+      <ProfileInfo />
+      <MyPosts postData={props.data}  addPost={props.addPost}/>
     </>
   );
 };

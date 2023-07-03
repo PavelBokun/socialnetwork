@@ -1,4 +1,6 @@
 import React from "react";
+import { rerender } from "./render";
+
 // let postData = [
 //   { id: 1, message: "Hi, how are you?", like: "15" },
 //   { id: 2, message: "Its my first post", like: "22" },
@@ -62,7 +64,7 @@ export type StateType = {
 //  id :number;
 //   message: string;
 //   like:string
-  
+
 // };
 
 const state: StateType = {
@@ -94,20 +96,23 @@ const state: StateType = {
   },
   saidbarPage: {
     friends: [
-      { id: 1, name: "Ola2" },
-      { id: 2, name: "Pasha2" },
-      { id: 3, name: "Valia2" },
-      { id: 4, name: "Sasha2" },
+      { id: 1, name: "Alex" },
+      { id: 2, name: "Pasha" },
+      { id: 3, name: "Can" },
+      { id: 4, name: "Barbara" },
     ],
   },
 };
 
-export const addPost = (postText:string) => {
-  let newPost: PostType= {
-    id: new Date().getTime(),
+export const addPost = (postText: string) => {
+    debugger
+  let newPost: PostType = {
+    id:5,
     message: postText,
-    like: "2"
-  };
-  state.profilePages.postsData.push(newPost)
-}
+    like: "2",
+  };// new Date().getTime()
+  state.profilePages.postsData.push(newPost);
+  rerender(state)
+};
+
 export default state;

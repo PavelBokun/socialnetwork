@@ -6,18 +6,32 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import state from "./Redux/state";
 import {addPost} from "./Redux/state";
+import { rerender } from "./Redux/render";
 
 
 
-// addPost()
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <BrowserRouter>
-    <App state={state}  addPost={addPost}/>
-  </BrowserRouter>
-);
+// addPost("ooov")
+// export let rerender=()=>{
+//   const root = ReactDOM.createRoot(
+//     document.getElementById("root") as HTMLElement    //закоментил
+//   );
+//   root.render(
+//     <BrowserRouter>
+//       <App state={state}  addPost={addPost}/>
+//     </BrowserRouter>
+//   ); 
+// }
+rerender(state)
+
+
+// const root = ReactDOM.createRoot(
+//   document.getElementById("root") as HTMLElement
+// );
+// root.render(
+//   <BrowserRouter>
+//     <App state={state}  addPost={addPost}/>
+//   </BrowserRouter>
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
