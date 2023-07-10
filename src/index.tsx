@@ -4,36 +4,35 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import state from "./Redux/state";
-import {addPost} from "./Redux/state";
-import { rerender } from "./Redux/render";
+import { StorepropsType, store } from "./Redux/state";
 
 
 
-// addPost("ooov")
-// export let rerender=()=>{
-//   const root = ReactDOM.createRoot(
-//     document.getElementById("root") as HTMLElement    //закоментил
-//   );
-//   root.render(
-//     <BrowserRouter>
-//       <App state={state}  addPost={addPost}/>
-//     </BrowserRouter>
-//   ); 
-// }
-rerender(state)
 
 
-// const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement
-// );
-// root.render(
-//   <BrowserRouter>
-//     <App state={state}  addPost={addPost}/>
-//   </BrowserRouter>
-// );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+type PropsType={
+    store:StorepropsType
+}
+
+const rerender = (props:PropsType) => {
+   const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+  root.render(
+    <BrowserRouter>
+      {/* <App
+        state={props.store._state}
+        addPost={store.addPost.bind(store)}
+        updateNewPostText={store.updateNewPostText.bind(store)}
+      /> */}
+      <App
+        state={props.store._state}
+        dispatch={store.dispatch.bind(store)}
+        // updateNewPostText={store.updateNewPostText.bind(store)}
+      />
+    </BrowserRouter>
+  );
+};
+rerender(store.getState());
+store.subscriber(rerender);
+
 reportWebVitals();

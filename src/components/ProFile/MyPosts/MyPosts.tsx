@@ -1,12 +1,15 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import { PostType } from "../../../Redux/state";
-// import { PostDataProps } from "../ProFile";
+//  import { PostDataProps } from "../ProFile";
 
 type MyPostPropsType = {
   postData: PostType[];
-  addPost:(postText:string)=>void
+  // addPost:(postText:string)=>void
+  newPostText:string
+  // updateNewPostText:(newText:string)=>void
+  dispatch:(action:any)=>void
 };
 
 const MyPosts = (props: MyPostPropsType) => {
@@ -14,29 +17,41 @@ const MyPosts = (props: MyPostPropsType) => {
   let postsElements = props.postData.map((el) => (
     <Post message={el.message} like={el.like} />
   ));
-  const newPostElement = React.createRef<HTMLTextAreaElement>();
+  let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const addPostHandler = () => {
-       let text = newPostElement.current?.value;
+    props.dispatch({type:"ADD-POST"})
+    //    let text = newPostElement.current?.value;
+            
+    // if (text != null) {
+    //   props.addPost(text)
+    //  props.updateNewPostText('')
       
-    if (text != null) {
-      props.addPost(text)
-      
-    }
-    text=''
+    // }
+    // text=''
   };
+
+  const onPostChange=()=> {
+    let text = newPostElement.current?.value;
+
+    const action=({type:"UPDATE-NEW-POST-TEXT",newText:text})
+    props.dispatch(action)
+    //     props.updateNewPostText(text);
+  }
   return (
     <div className={s.postsblock}>
       <div>
         <h3 className={s.postsize}>My posts</h3>
       </div>
       <div>
-        <textarea ref={newPostElement}></textarea>
+        <textarea onChange={onPostChange} 
+        ref={newPostElement}
+        value={props.newPostText}
+          />
       </div>
       <div>
         <button onClick={addPostHandler}>Add post</button>
         {/* <button onClick={addPost}>Add post</button> */}
-
       </div>
 
       <div className={s.item}>
