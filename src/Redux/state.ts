@@ -1,4 +1,6 @@
 import React from "react";
+
+
 export type MessageType = {
   id: number;
   message: string;
@@ -39,13 +41,13 @@ export type StorepropsType = {
   _state: StateType;
   // updateNewPostText: (newText: string) => void;
   // addPost: (postText: string) => void;
-  subscriber: (observer: () => void) => void;
-  _callSubscriber: () => void;
+  subscriber: (observer: (state:StateType) => void) => void;
+  _callSubscriber: (state:StateType) => void;
   getState: () => StateType;
   dispatch:(action:any)=>void
 };
 export const store: StorepropsType = {
-  _callSubscriber() {
+  _callSubscriber(state:StateType) {
     console.log("state chenged");
   },
   _state: {
@@ -101,7 +103,7 @@ export const store: StorepropsType = {
   //   this._state.profilePages.newPostText = newText;
   //   this._callSubscriber();
   // },
-  subscriber(observer: () => void) {
+  subscriber(observer: (state:StateType) => void) {
     this._callSubscriber = observer;
   },
   dispatch(action) {
@@ -112,12 +114,12 @@ export const store: StorepropsType = {
         like: "2",
       };
       this._state.profilePages.postsData.push(newPost);
-      this._callSubscriber();
+      this._callSubscriber(this._state);
     } else if (action.type === "UPDATE-NEW-POST-TEXT") {
       this._state.profilePages.newPostText = action.newText;
-      this._callSubscriber();
+      this._callSubscriber(this._state);
     }
   },
 };
 
-// window.store=store
+

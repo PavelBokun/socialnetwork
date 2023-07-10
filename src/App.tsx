@@ -4,15 +4,16 @@ import ProFile from "./components/ProFile/ProFile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import { StorepropsType } from "./Redux/state";
+import { StateType, StorepropsType } from "./Redux/state";
+
 
 type PropsType = {
-  store:StorepropsType
-  dispatch:(action:any)=>void
+  state: StateType;
+  dispatch: (action: any) => void;
 };
 
 const App: React.FC<PropsType> = (props) => {
-    return (
+  return (
     <div className="app">
       <Header />
       <NavBar />
@@ -23,8 +24,8 @@ const App: React.FC<PropsType> = (props) => {
             path="/dialogs"
             render={() => (
               <Dialogs
-                dialogs={props.store._state.dialogsPage.dialogs}
-                messages={props.store._state.dialogsPage.messages}
+                dialogs={props.state.dialogsPage.dialogs}
+                messages={props.state.dialogsPage.messages}
               />
             )}
           />
@@ -33,10 +34,11 @@ const App: React.FC<PropsType> = (props) => {
             path="/profile"
             render={() => (
               <ProFile
-                data={props.store._state.profilePages.postsData}
-                newPostText={props.store._state.profilePages.newPostText}
-                dispatch={props.store.dispatch} // addPost={props.store.addPost.bind(props.store)}
-                            // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                data={props.state.profilePages.postsData}
+                newPostText={props.state.profilePages.newPostText}
+                dispatch={props.dispatch}
+                // addPost={props.store.addPost.bind(props.store)}
+                // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
               />
             )}
           />

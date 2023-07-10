@@ -7,9 +7,9 @@ import { PostType} from "../../Redux/state";
 
 export type ProFileType = {
   data: PostType[];
-  addPost: (postText: string) => void;
+  // addPost: (postText: string) => void;
   newPostText: string;
-  updateNewPostText: (newText: string) => void;
+  // updateNewPostText: (newText: string) => void;
   dispatch:(action:any)=>void
 };
 const ProFile = (props: ProFileType) => {

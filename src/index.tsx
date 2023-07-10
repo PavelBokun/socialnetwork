@@ -4,32 +4,24 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { StorepropsType, store } from "./Redux/state";
+import { StateType, store } from "./Redux/state";
 
 
-
-
-
-
-type PropsType={
-    store:StorepropsType
-}
-
-const rerender = (props:PropsType) => {
-   const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+// type PropsType={
+//     store:StorepropsType
+// }
+const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+  );
+const rerender = (state:StateType) => {
+  
   root.render(
     <BrowserRouter>
-      {/* <App
-        state={props.store._state}
-        addPost={store.addPost.bind(store)}
-        updateNewPostText={store.updateNewPostText.bind(store)}
-      /> */}
       <App
-        state={props.store._state}
-        dispatch={store.dispatch.bind(store)}
-        // updateNewPostText={store.updateNewPostText.bind(store)}
-      />
-    </BrowserRouter>
+       state={state}
+       dispatch={store.dispatch.bind(store)} 
+       />
+    </BrowserRouter>,
   );
 };
 rerender(store.getState());
