@@ -1,4 +1,4 @@
-import { type } from "os";
+
 import classes from "./Post.module.css";
 
 

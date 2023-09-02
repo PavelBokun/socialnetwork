@@ -1,61 +1,54 @@
-import React from "react";
+import React, {  TextareaHTMLAttributes } from "react";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Messages";
-import { DialogType, MessageType } from "../../Redux/state";
+import { DialogType, MessageType, StateType, StorepropsType, sendMessageAC, updateNewMessageBodyAC } from "../../Redux/state";
 
 
 
  export type PropsType = {
-  dialogs: DialogType[];
-  messages: MessageType[];
+  // dialogs: DialogType[];
+  // messages: MessageType[];
+  // state:StateType
+  store:StorepropsType
 };
-
-
-// type MessageDataPropsType={
-//     id: number;
-//     message:string
-// }
-
-// const DialogItem = (props: dilogItemType) => {    /////////// перенесли
-//   let path = "/dialogs/1" + props.id;
-//   return (
-//     <div className={s.dialog + " " + s.active}>
-//       <NavLink to={path}>{props.name}</NavLink>
-//     </div>
-//   );
-// };
-
 const Dialogs = (props: PropsType) => {
-  // let dialogs = [
-  //   { id: 1, name: "Ola" },
-  //   { id: 2, name: "Pasha" },
-  //   { id: 3, name: "Valia" },
-  //   { id: 4, name: "Sasha" },
-  // ];
-
-  // let messages = [
-  //   { id: 1, message: "Hi" },
-  //   { id: 2, message: "Who are you" },
-  //   { id: 3, message: "Ok" },
-  //   { id: 4, message: "Good buy" },
-  // ];
-  const dialogsElements = props.dialogs.map((el) => (
+  
+  const state=props.store.getState().dialogsPage // в переменную state закинули getState() диалогспадж
+  const dialogsElements = state.dialogs.map((el) => (
     <DialogItem name={el.name} id={el.id} />
   ));
-  const messagesElements = props.messages.map((el) => (
+  const messagesElements = state.messages.map((el) => (
     <Message message={el.message} id={el.id} />
   ));
+  let newMesssageBody  = state.newMessageText;
+  
+  const onHandlerSendMessageClick=()=>{
+    props.store.dispatch(sendMessageAC())
+ 
+  }
+  const onHandlerNewMessage=(e:any)=>{
+    
+  let body= e.target.value;
+  props.store.dispatch(updateNewMessageBodyAC(body))
+  }
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>
         {dialogsElements}
-
         {/* <DialogItem name={dialogsData[2].name} id={dialogsData[2].id} />
         <DialogItem name={dialogsData[3].name} id={dialogsData[3].id} /> */}
       </div>
       <div className={s.messages}>
-        {messagesElements}
+        <div>{messagesElements}</div>
+        <div>
+          <div><textarea value={newMesssageBody}
+          onChange={onHandlerNewMessage} 
+          placeholder="Enter your message" >
+            </textarea></div>
+          <div><button onClick={()=>{onHandlerSendMessageClick}}>Send</button></div>
+        </div>
+
         {/* <Message message="Hi" />
         <Message message="Hellow" /> */}
       </div>

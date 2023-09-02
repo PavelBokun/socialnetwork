@@ -22,16 +22,16 @@ type DialogsPropsType = {
 // }
 
 const Message = (props: messageType) => {
-  const newMessages= React.createRef<HTMLTextAreaElement>()
-  const addPost2=()=>{
-   const text2=newMessages.current?.value
-   alert(text2)
-  }
+  // const newMessages= React.createRef<HTMLTextAreaElement>()
+  // const addPost2=()=>{
+  //  const text2=newMessages.current?.value
+  //  alert(text2)
+  // }
   return (
     <div className={s.messages}>
       <div className={s.message}>{props.message}</div>
-      <textarea  ref={newMessages}></textarea>
-      <button onClick={addPost2}>Add post</button>
+      {/* <textarea  ref={newMessages}></textarea> */}
+      {/* <button onClick={addPost2}>Add post</button> */}
 
     </div>
   );
